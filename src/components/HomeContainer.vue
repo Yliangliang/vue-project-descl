@@ -8,7 +8,7 @@
 
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-            <router-link to="/home/newslist">
+            <router-link to="/newlist">
                     <img src="../assets/images/menu1.png" alt="">
                     <div class="mui-media-body">新闻资讯</div></router-link></li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
@@ -31,7 +31,7 @@
 </template>
 
 <script>
-// import { Toast } from "mint-ui";
+import { Toast } from "mint-ui";
 
 export default {
   data() {
@@ -60,22 +60,30 @@ export default {
 };
     
 </script>
-<style lang="" scoped>
+<style lang="less" scoped>
+/*轮播图样式*/
 .mint-swipe{
     height:200px;
+    img{
+    width:100%;
+    height:100%;
+    }
 }
-    .mint-swipe-item:nth-child(1){
-            background-color:skyblue;
-        }
-    .mint-swipe-item:nth-child(2){
-            background-color:orange;
-        }
-    .mint-swipe-item:nth-child(3){
-            background-color:red;
-        }
-    
+/*九宫格样式 */
+.mui-grid-9{
+    background-color:#fff;
+    border:none;
+    border:0;
+    img{
+        width:60px;
+        height:60px;
+    }
+    .mui-media-body{
+        font-size:13px;
+    }
+}
 
-   
-    
+
+
     
 </style>

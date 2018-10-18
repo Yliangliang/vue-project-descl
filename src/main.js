@@ -9,15 +9,15 @@ import './assets/mui/css/mui.min.css'
 import './assets/mui/css/icons-extra.css'
 import VueResource from 'vue-resource'
 
+Vue.use(VueResource);
+Vue.use(MintUI);
 
-Vue.use(MintUI,VueResource);
-//引入头部
 import { Header,Swipe, SwipeItem} from 'mint-ui';
-Vue.component(Header.name, Header);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Header.name, Header);//引入头部
+Vue.component(Swipe.name, Swipe);//引入轮播图
+Vue.component(SwipeItem.name, SwipeItem);//引入轮播图
 
-//轮播图
+vue.http.options.root="http://027xin.com:8899/api/getlunbo"
 
 
 Vue.config.productionTip = false
