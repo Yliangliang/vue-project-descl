@@ -1,20 +1,25 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import HomeContainer from '@/components/HomeContainer'
 import MemberContainer from '@/components/MemberContainer'
 import ShopCarContainer from '@/components/ShopCarContainer'
 import SearchContainer from '@/components/SearchContainer'
-import NewsList from '@/components/NewsList'
+import NewsList from '@/components/news/NewsList'//导入新闻资讯
+import NewsInfo from '@/components/news/NewsInfo'//导入新闻跳转页
+import PhotoList from '@/components/photos/PhotoList' //导入图片分享
 
-Vue.use(Router)
 
-export default new Router({
+Vue.use(VueRouter) 
+
+export default new VueRouter({
   routes: [
     { path: '/home', component: HomeContainer },
     { path: '/member', component: MemberContainer },
     { path: '/shopcar', component: ShopCarContainer },
     { path: '/search', component: SearchContainer },
-    { path: '/newlist', component:NewsList}
+    { path: '/home/newslist', component:NewsList},
+    { path: '/home/newsinfo/:id', component: NewsInfo },
+    { path: '/home/photolist', component: PhotoList }
   ],
   linkActiveClass:"mui-active"
 })
