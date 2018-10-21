@@ -4,12 +4,12 @@ import HomeContainer from '@/components/HomeContainer'
 import MemberContainer from '@/components/MemberContainer'
 import ShopCarContainer from '@/components/ShopCarContainer'
 import SearchContainer from '@/components/SearchContainer'
-import NewsList from '@/components/news/NewsList'//导入新闻资讯
-import NewsInfo from '@/components/news/NewsInfo'//导入新闻跳转页
-import PhotoList from '@/components/photos/PhotoList' //导入图片分享
+import NewsList from '@/components/news/NewsList.vue'//导入新闻资讯
+import NewsInfo from '@/components/news/NewsInfo.vue'//导入新闻跳转页
+import PhotoList from '@/components/photos/PhotoList.vue' //导入图片分享
 
 
-Vue.use(VueRouter) 
+ 
 
 export default new VueRouter({
   routes: [

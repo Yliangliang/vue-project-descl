@@ -10,24 +10,26 @@
             <hr>
             <!-- 内容区域 -->
             <div class="content" v-html="newsinfo.content"></div>
+
+            <Comment-box :id="this.id"></Comment-box>
         </div>    
 
         
 </template>
 <script>
 import comment from "../subcomponents/comment.vue";
-  export default {
-  data() {
-    return {
-      id: this.$route.params.id, // 将 URL 地址中传递过来的 Id值，挂载到 data上，方便以后调用
-      newsinfo: {} // 新闻对象
-    };
-  },
-  created() {
-    this.getNewsInfo();
+export default {
+    data() {
+        return {
+            id: this.$route.params.id, // 将 URL 地址中传递过来的 Id值，挂载到 data上，方便以后调用
+            newsinfo: {} // 新闻对象
+        };
+    },
+    created() {
+        this.getNewsInfo();
   },
   methods: {
-    getNewsInfo() {
+      getNewsInfo() {
       // 获取新闻详情
       this.$http.get("api/getnew/" + this.id).then(result => {
         if (result.body.status === 0) {
@@ -36,11 +38,9 @@ import comment from "../subcomponents/comment.vue";
           Toast("获取新闻失败！");
         }
       });
-    }
+     }
   },
-  components:{
-    "comment-box": comment
-  }
+  components:{"comment-box": comment},
 };   
 </script>
 
