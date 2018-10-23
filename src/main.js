@@ -3,7 +3,7 @@
 import App from './App.vue'
 import Vue from 'vue'
 // import router from './router'
-import MintUI from 'mint-ui'
+import MintUi from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import './assets/mui/css/mui.min.css'
 import './assets/mui/css/icons-extra.css'
@@ -12,10 +12,12 @@ import moment from 'moment' //导入时间格式化组件库momet
 import { Header, Swipe, SwipeItem } from 'mint-ui';
 import VueRouter from 'vue-router'
 import router from './router/index.js'
+import VuePreview from 'vue-preview'
 
 Vue.use(VueResource);
-Vue.use(MintUI);
-Vue.use(VueRouter)
+Vue.use(MintUi);
+Vue.use(VueRouter);
+Vue.use(VuePreview);
 
 Vue.component(Header.name, Header);//引入头部
 Vue.component(Swipe.name, Swipe);//引入轮播图

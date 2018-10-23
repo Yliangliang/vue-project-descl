@@ -7,6 +7,7 @@ import SearchContainer from '@/components/SearchContainer'
 import NewsList from '@/components/news/NewsList.vue'//导入新闻资讯
 import NewsInfo from '@/components/news/NewsInfo.vue'//导入新闻跳转页
 import PhotoList from '@/components/photos/PhotoList.vue' //导入图片分享
+import PhotoInfo from '@/components/photos/PhotoInfo.vue'
 
 
  
@@ -19,7 +20,8 @@ export default new VueRouter({
     { path: '/search', component: SearchContainer },
     { path: '/home/newslist', component:NewsList},
     { path: '/home/newsinfo/:id', component: NewsInfo },
-    { path: '/home/photolist', component: PhotoList }
+    { path: '/home/photolist', component: PhotoList },
+    { path: '/home/photoinfo/:id', component: PhotoInfo }
   ],
   linkActiveClass:"mui-active"
 })
