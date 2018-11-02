@@ -1,10 +1,7 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="(item,index) in imageList" :key="index">
-                <img :src="item.img" alt="">
-            </mt-swipe-item>           
-        </mt-swipe>
+      <swiper :lunbotuList=" imageList" :isfull="true"></swiper>
+
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
             <router-link to="/home/newslist">
@@ -33,6 +30,7 @@
 
 <script>
 import { Toast } from "mint-ui";
+import swiper from "./subcomponents/swiper.vue";
 
 export default {
   data() {
@@ -57,6 +55,9 @@ export default {
         }
       });
     }
+  },
+  components:{
+    swiper
   }
 };
     

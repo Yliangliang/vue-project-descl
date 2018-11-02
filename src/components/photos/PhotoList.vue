@@ -26,7 +26,7 @@
    import mui from "../../assets/mui/js/mui.min.js";
   export default {
     data(){
-    return {
+      return {
       cates: [], // 所有分类的列表数组
       list: [] // 图片列表的数组
     };
