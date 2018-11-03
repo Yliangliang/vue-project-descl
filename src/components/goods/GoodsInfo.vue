@@ -1,5 +1,12 @@
 <template>
   <div class="goodsinfo-container">
+
+     <transition
+       @before-enter="beforeEnter"
+       @enter="enter"
+       @after-enter="afterEnter">
+       <div class="ball" v-show="ballFlag" ref="ball"></div>
+     </transition>
     <!-- 商品轮播图区域 -->
     <div class="mui-card">
     <div class="mui-card-content">
@@ -9,17 +16,17 @@
     </div>
     </div>
     <!-- 商品购买区域 -->
-    <div class="mui-card">
+<div class="mui-card">
   <div class="mui-card-header">商品名称</div>
   <div class="mui-card-content">
     <div class="mui-card-content-inner">
       <p class="price">
         市场价：<del>￥2399</del>&nbsp;&nbsp;销售价：<span class="now_price">￥1999</span>
       </p>
-      <p>购买数量：<numbox></numbox></p>
+      <p>购买数量：<numbox @getcount="getSelectedCount" :max="goodsinfo"></numbox></p>
       <p>
         <mt-button type="primary" size="small">立即购买</mt-button>
-        <mt-button type="danger" size="small">加入购物车</mt-button>
+        <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
       </p>
     </div>
   </div>
@@ -79,18 +86,50 @@ import numbox from "../subcomponents/goodsinfo_numbox.vue";
          }
        });
      },
+     getSelectedCount(count){
+       this.selectedCount=count;
+     },
      goDesc(id){
        this.$router.push({name:"goodsdesc",params:{id}});
      },
      goComment(id){
        this.$router.push({name:"goodscomment",params:{id}});
-     }
-
+     },
+     addToShopCar(){
+       this.ballFlag = !this.ballFlag;
+       var goodsinfo ={
+         id:this.id,
+         count:this.selectedCount,
+         price:this.goodsinfo.sell_price,
+         selected:true
+       };
+       this.$store.commit("addToCar",goodsinfo);
+     },
+     beforeEnter(el) {
+        el.style.transform = "translate(0, 0)";
+     },
+     enter(el, done) {
+         el.offsetWidth;  // 强制让页面重绘
+         const ballPosition = this.$refs.ball.getBoundingClientRect();
+         const badgePosition = document.getElementById("badge").getBoundingClientRect();
+         const xDist = badgePosition.left-ballPosition.left;
+         const yDist = badgePosition.top-ballPosition.top;
+         el.style.transform = "translate(93px,230px)";
+         el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
+         done(); // 必须加的
+    },
+    countChanged(){
+      this.$emit("getcount",parseInt(this.$refs.numbox.value));
+    },
+    afterEnter(el) {
+         this.ballFlag = !this.ballFlag;
+    }
+    },
+    components:{
+       swiper,
+       numbox
    },
-   components:{
-     swiper,
-     numbox
-   }
+   props:["max"]
  }
   
 </script>
@@ -110,5 +149,15 @@ import numbox from "../subcomponents/goodsinfo_numbox.vue";
       margin: 15px 0;
     }
   }
+}
+.ball {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  z-index: 99;
+  top: 390px;
+  left: 146px;
 }
 </style>

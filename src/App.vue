@@ -2,7 +2,7 @@
   <div class="app-container">
 
     <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="黑马程序员·19期Vue项目"></mt-header>
+    <mt-header fixed title="趣云"></mt-header>
     <!-- 2 router-view占位符 -->
     <!-- 中间的 路由 router-view 区域 -->
 		<transition>
@@ -22,7 +22,7 @@
 			</router-link>
 			<router-link class="mui-tab-item-lib" to="/shopcar">
 				<span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-					<span class="mui-badge">0</span>
+					<span class="mui-badge" id="badge">{{this.$store.getters.getAllCount}}</span>
 				</span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
