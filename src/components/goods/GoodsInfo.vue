@@ -23,7 +23,7 @@
       <p class="price">
         市场价：<del>￥2399</del>&nbsp;&nbsp;销售价：<span class="now_price">￥1999</span>
       </p>
-      <p>购买数量：<numbox @getcount="getSelectedCount" :max="goodsinfo"></numbox></p>
+      <p>购买数量：<numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox></p>
       <p>
         <mt-button type="primary" size="small">立即购买</mt-button>
         <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -52,6 +52,8 @@
 <script>
 import swiper from '../subcomponents/swiper.vue'
 import numbox from "../subcomponents/goodsinfo_numbox.vue";
+
+
 
  export default{
    data(){
@@ -86,9 +88,7 @@ import numbox from "../subcomponents/goodsinfo_numbox.vue";
          }
        });
      },
-     getSelectedCount(count){
-       this.selectedCount=count;
-     },
+    
      goDesc(id){
        this.$router.push({name:"goodsdesc",params:{id}});
      },
@@ -98,8 +98,8 @@ import numbox from "../subcomponents/goodsinfo_numbox.vue";
      addToShopCar(){
        this.ballFlag = !this.ballFlag;
        var goodsinfo ={
-         id:this.id,
-         count:this.selectedCount,
+         id: this.id,
+         count: this.selectedCount,
          price:this.goodsinfo.sell_price,
          selected:true
        };
@@ -121,6 +121,10 @@ import numbox from "../subcomponents/goodsinfo_numbox.vue";
     countChanged(){
       this.$emit("getcount",parseInt(this.$refs.numbox.value));
     },
+     getSelectedCount(count){
+       this.selectedCount=count;
+       console.log("父组件拿到的数量值为： " + this.selectedCount);
+     },
     afterEnter(el) {
          this.ballFlag = !this.ballFlag;
     }
